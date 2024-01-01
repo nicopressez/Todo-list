@@ -19,6 +19,14 @@ export function addTask (form){
     addTaskInterface(currentProject,form)
 }
 
+export function editTask(project, editButton, newTitle,newDesc,newDueDate){
+    const currentTask = findTask(project, editButton);
+    currentTask.title = newTitle;
+    currentTask.description = newDesc;
+    currentTask.dueDate = newDueDate;
+    console.log(currentTask);
+}
+
 export function removeTask(project,event)
 {
   const currentTask = findTask(project,event);
