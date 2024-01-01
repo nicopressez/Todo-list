@@ -2,12 +2,11 @@ import { Listeners, addProjectUI } from "./UI";
 
 Listeners();
 
-class Todos{
-    constructor(project, title,description,dueDate,priority){
+class Tasks{
+    constructor(project, title,description,dueDate){
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.priority = priority;
 
         project.push(this);
     }
