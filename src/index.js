@@ -41,3 +41,10 @@ export class Projects{
 export function createProject(form){
     new Projects(form.projectName.value);
 }
+
+export function removeProject(event){
+    const currentProject = findProject(event.target);
+    const currentIndex = projectList.findIndex(project => project == currentProject);
+    projectList.splice(currentIndex);
+    console.log(projectList);
+}

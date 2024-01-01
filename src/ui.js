@@ -1,4 +1,4 @@
-import { Projects, Tasks, addTask, projectList, createProject, removeTask } from ".";
+import { Projects, Tasks, addTask, projectList, createProject, removeTask, removeProject } from ".";
 
 export function Listeners(){
 document.querySelector('.newProject').addEventListener('submit', function(event){
@@ -13,19 +13,25 @@ export function addProjectInterface(projectName){
     const body = document.querySelector("body");
     const project = document.createElement("div");
     const projectTitle = document.createElement("h3");
-
+    const projectRemoveBtn = document.createElement("button");
     const addTaskBtn = document.createElement("button");
-    addTaskBtn.textContent = "Add task";
+
     addTaskBtn.classList.add('addTaskBtn')
 
-    project.appendChild(projectTitle);
-    project.appendChild(addTaskBtn);
-    addTaskBtn.addEventListener('click', (event) => showTaskForm(event));
-
+    addTaskBtn.textContent = "Add task";
+    projectRemoveBtn.textContent = "Remove Project";
     projectTitle.textContent = projectName;
 
+    addTaskBtn.addEventListener('click', (event) => showTaskForm(event));
+    projectRemoveBtn.addEventListener('click', (event) => {
+        body.removeChild(project);
+        removeProject(event);
+    });
+
     body.appendChild(project);
+    project.appendChild(projectTitle);
     project.appendChild(addTaskBtn);
+    project.appendChild(projectRemoveBtn);
 }
 
 export function findProject(form){
@@ -57,6 +63,7 @@ function showTaskForm(event){
     const clickedButton = event.target;
     const upperDiv = clickedButton.parentNode;
     upperDiv.appendChild(addTaskForm);
+
     addTaskForm.appendChild(addTaskTitle);
     addTaskForm.appendChild(addTaskDesc);
     addTaskForm.appendChild(addTaskDate);
