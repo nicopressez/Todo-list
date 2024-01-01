@@ -1,32 +1,42 @@
-import { Projects } from ".";
+import { Projects, Tasks, addTask, projectList } from ".";
 
 export function Listeners(){
 document.querySelector('.newProject').addEventListener('submit', function(event){
     event.preventDefault();
-    createProject(this);
+    createProject(this)
+    resetInputs(this);
 })
 }
 
 export function createProject(form){
-    const Project = new Projects(form.projectName.value);
-    console.log(Project);
+    new Projects(form.projectName.value);
 }
 
-export function addProjectUI(projectName){
+export function addProjectInterface(projectName){
     const body = document.querySelector("body");
     const project = document.createElement("div");
+    const projectTitle = document.createElement("h3");
 
     const addTaskBtn = document.createElement("button");
     addTaskBtn.textContent = "Add task";
     addTaskBtn.classList.add('addTaskBtn')
 
+    project.appendChild(projectTitle);
     project.appendChild(addTaskBtn);
     addTaskBtn.addEventListener('click', (event) => showTaskForm(event));
 
-    project.textContent = projectName;
+    projectTitle.textContent = projectName;
 
     body.appendChild(project);
-    body.appendChild(addTaskBtn);
+    project.appendChild(addTaskBtn);
+}
+
+export function findProject(form){
+    const projectDiv = form.parentNode;
+    const projectTitle = projectDiv.querySelector("h3");
+    const projectName = projectTitle.textContent;
+    const thisProject = projectList.find ((project) => project.name == projectName);
+    return thisProject;
 }
 
 function showTaskForm(event){
@@ -41,10 +51,27 @@ function showTaskForm(event){
     addTaskDate.type = "date"; addTaskDate.name = "newTaskDate";
     addTaskConfirm.type = "submit"; addTaskConfirm.name = "confirmNewTask";
 
+    addTaskConfirm.classList.add("confirmNewTask");
+    addTaskForm.addEventListener('submit', function(event){
+        event.preventDefault();
+        addTask(this);
+        resetInputs(this)})
+
     const clickedButton = event.target;
     const upperDiv = clickedButton.parentNode;
     upperDiv.appendChild(addTaskForm);
-    upperDiv.appendChild(addTaskTitle);
-    upperDiv.appendChild(addTaskDesc);
-    upperDiv.appendChild(addTaskDate);
-    upperDiv.appendChild(addTaskConfirm);}
+    addTaskForm.appendChild(addTaskTitle);
+    addTaskForm.appendChild(addTaskDesc);
+    addTaskForm.appendChild(addTaskDate);
+    addTaskForm.appendChild(addTaskConfirm);}
+
+    function resetInputs(form){
+      const inputs =  form.querySelectorAll("input");
+
+      inputs.forEach(input => {
+        if (input.type !== 'submit')
+        {
+            input.value = "";
+        }
+      });
+    }
