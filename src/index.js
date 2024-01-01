@@ -1,4 +1,4 @@
-import { Listeners, addProjectInterface, addTaskInterface, findProject } from "./UI";
+import { Listeners, addProjectInterface, addTaskInterface, findProject, findTask } from "./UI";
 
 Listeners();
 
@@ -20,6 +20,14 @@ export function addTask (form){
     console.log(test);
 }
 
+export function removeTask(project,event)
+{
+  const currentTask = findTask(project,event);
+  const taskIndex = project.tasks.findIndex((element) => element == currentTask );
+  project.tasks.splice(taskIndex, 1);
+  console.log (project.tasks);
+}
+
 export class Projects{
     constructor(name){
         this.name = name;
@@ -27,4 +35,9 @@ export class Projects{
         projectList.push(this);
         addProjectInterface(this.name);
     }
+}
+
+
+export function createProject(form){
+    new Projects(form.projectName.value);
 }

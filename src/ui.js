@@ -1,4 +1,4 @@
-import { Projects, Tasks, addTask, projectList } from ".";
+import { Projects, Tasks, addTask, projectList, createProject, removeTask } from ".";
 
 export function Listeners(){
 document.querySelector('.newProject').addEventListener('submit', function(event){
@@ -8,9 +8,6 @@ document.querySelector('.newProject').addEventListener('submit', function(event)
 })
 }
 
-export function createProject(form){
-    new Projects(form.projectName.value);
-}
 
 export function addProjectInterface(projectName){
     const body = document.querySelector("body");
@@ -74,18 +71,36 @@ export function addTaskInterface(project,form)
         const taskTitle = document.createElement("h3");
         const taskDesc = document.createElement("p");
         const taskDueDate = document.createElement("p");
+        const removeTaskBtn = document.createElement("button");
 
         taskTitle.textContent = taskInfo.title;
         taskDesc.textContent = taskInfo.description;
         taskDueDate.textContent = taskInfo.dueDate;
+        removeTaskBtn.textContent = "Remove";
+
+        removeTaskBtn.addEventListener('click', (event) => {
+            upperDiv.removeChild(taskDiv);
+            removeTask(project,event)
+        });
 
         const upperDiv = form.parentNode;
         upperDiv.appendChild(taskDiv);
         taskDiv.appendChild(taskTitle);
         taskDiv.appendChild(taskDesc);
         taskDiv.appendChild(taskDueDate);
+        taskDiv.appendChild(removeTaskBtn);
     }
 
+
+    export function findTask(project,event)
+    {
+        const removeButton = event.target;
+        const taskDiv = removeButton.parentNode;
+        const taskTitle = taskDiv.querySelector("h3");
+        const taskName = taskTitle.textContent;
+        const currentTask = project.tasks.find(task => task.title === taskName );
+        return currentTask;
+    }
 
     function resetInputs(form){
       const inputs =  form.querySelectorAll("input");
