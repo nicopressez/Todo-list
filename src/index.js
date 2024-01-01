@@ -15,9 +15,8 @@ export class Tasks{
 
 export function addTask (form){
     const currentProject = findProject(form)
-    const test = new Tasks(currentProject, form.newTaskTitle.value, form.newTaskDesc.value, form.newTaskDate.value);
+    new Tasks(currentProject, form.newTaskTitle.value, form.newTaskDesc.value, form.newTaskDate.value);
     addTaskInterface(currentProject,form)
-    console.log(test);
 }
 
 export function removeTask(project,event)
@@ -25,7 +24,6 @@ export function removeTask(project,event)
   const currentTask = findTask(project,event);
   const taskIndex = project.tasks.findIndex((element) => element == currentTask );
   project.tasks.splice(taskIndex, 1);
-  console.log (project.tasks);
 }
 
 export class Projects{
@@ -42,9 +40,14 @@ export function createProject(form){
     new Projects(form.projectName.value);
 }
 
+export function editProject(editButton, newName)
+{
+    const currentProject = findProject(editButton);
+    currentProject.name = newName;
+}
+
 export function removeProject(event){
     const currentProject = findProject(event.target);
     const currentIndex = projectList.findIndex(project => project == currentProject);
     projectList.splice(currentIndex);
-    console.log(projectList);
 }

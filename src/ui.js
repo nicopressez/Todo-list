@@ -1,4 +1,4 @@
-import { Projects, Tasks, addTask, projectList, createProject, removeTask, removeProject } from ".";
+import { Projects, Tasks, addTask, projectList, createProject, removeTask, removeProject, editProject } from ".";
 
 export function Listeners(){
 document.querySelector('.newProject').addEventListener('submit', function(event){
@@ -15,22 +15,48 @@ export function addProjectInterface(projectName){
     const projectTitle = document.createElement("h3");
     const projectRemoveBtn = document.createElement("button");
     const addTaskBtn = document.createElement("button");
+    const editProjectBtn = document.createElement("button");
 
     addTaskBtn.classList.add('addTaskBtn')
 
     addTaskBtn.textContent = "Add task";
     projectRemoveBtn.textContent = "Remove Project";
     projectTitle.textContent = projectName;
+    editProjectBtn.textContent = "Edit";
 
     addTaskBtn.addEventListener('click', (event) => showTaskForm(event));
+
     projectRemoveBtn.addEventListener('click', (event) => {
         body.removeChild(project);
         removeProject(event);
     });
 
+    editProjectBtn.addEventListener('click', (editButton) => {
+        const editForm = document.createElement("form");
+        const editInput = document.createElement("input");
+        const editConfirmBtn = document.createElement("input");
+
+        editInput.value = projectTitle.textContent;
+        editInput.type = "text";
+
+        editConfirmBtn.type = "submit";
+
+        editForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const newName = editInput.value;
+            editProject(editProjectBtn, newName);
+            projectTitle.textContent = newName;
+        })
+
+        editButton.target.parentNode.appendChild(editForm);
+        editForm.appendChild(editInput);
+        editForm.appendChild(editConfirmBtn);
+    })
+
     body.appendChild(project);
     project.appendChild(projectTitle);
     project.appendChild(addTaskBtn);
+    project.appendChild(editProjectBtn);
     project.appendChild(projectRemoveBtn);
 }
 
