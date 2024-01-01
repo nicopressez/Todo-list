@@ -1,0 +1,65 @@
+:root
+{
+    --main-color-1: #152f3b;
+    --main-color-2: #fdfdfd;
+    --main-color-3: #df1b28;
+}
+
+*
+{
+    font-family: Oswald, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.head
+{
+    background-color: #0f1b1b;
+    color: var(--main-color-2);
+    height: 100px;
+    text-align: center;
+    width: 100%;
+    border-bottom: 4px solid var(--main-color-2);
+}
+
+.head h1
+{
+    font-size: 5rem;
+    margin-left: 80px;
+    margin-right: 80px;
+    display: inline-block;
+}
+
+.shia-doit
+{
+    height: 90px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+body
+{
+    background-color: #e4e7f8;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.navbar{
+    padding-top: 50px;
+    padding-left: 20px;
+    background-color: #0f1b1b;
+    color: var(--main-color-2);
+    width: 15%;
+    height: 90vh;
+    border-right: 4px solid var(--main-color-2);
+}
+
+.navbar h2
+{
+    margin-bottom: 20px;
+}
+
+section.projects
+{
+    
+}
