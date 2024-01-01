@@ -1,4 +1,4 @@
-import { Listeners, addProjectInterface, findProject } from "./UI";
+import { Listeners, addProjectInterface, addTaskInterface, findProject } from "./UI";
 
 Listeners();
 
@@ -10,12 +10,13 @@ export class Tasks{
         this.description = description;
         this.dueDate = dueDate;
         project.tasks.push(this);
-        console.log(projectList[0])
     }
 }
 
 export function addTask (form){
-    const test = new Tasks(findProject(form), form.newTaskTitle.value, form.newTaskDesc.value, form.newTaskDate.value);
+    const currentProject = findProject(form)
+    const test = new Tasks(currentProject, form.newTaskTitle.value, form.newTaskDesc.value, form.newTaskDate.value);
+    addTaskInterface(currentProject,form)
     console.log(test);
 }
 

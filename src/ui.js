@@ -63,7 +63,29 @@ function showTaskForm(event){
     addTaskForm.appendChild(addTaskTitle);
     addTaskForm.appendChild(addTaskDesc);
     addTaskForm.appendChild(addTaskDate);
-    addTaskForm.appendChild(addTaskConfirm);}
+    addTaskForm.appendChild(addTaskConfirm);
+}
+
+export function addTaskInterface(project,form)
+    {
+        const taskInfo = project.tasks[project.tasks.length - 1];
+
+        const taskDiv = document.createElement("div");
+        const taskTitle = document.createElement("h3");
+        const taskDesc = document.createElement("p");
+        const taskDueDate = document.createElement("p");
+
+        taskTitle.textContent = taskInfo.title;
+        taskDesc.textContent = taskInfo.description;
+        taskDueDate.textContent = taskInfo.dueDate;
+
+        const upperDiv = form.parentNode;
+        upperDiv.appendChild(taskDiv);
+        taskDiv.appendChild(taskTitle);
+        taskDiv.appendChild(taskDesc);
+        taskDiv.appendChild(taskDueDate);
+    }
+
 
     function resetInputs(form){
       const inputs =  form.querySelectorAll("input");
