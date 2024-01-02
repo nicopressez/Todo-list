@@ -162,3 +162,11 @@ section.projects
     width: 30%;
     margin: 0 auto 10px;
 }
+
+.projects, .today, .thisWeek{
+    display: none;
+}
+
+.projects.active, .today.active, .thisWeek.active{
+    display: block;
+}

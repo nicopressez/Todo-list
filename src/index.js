@@ -1,4 +1,4 @@
-import { Listeners, addProjectInterface, addTaskInterface, findProject, findTask } from "./ui";
+import {Listeners, addProjectInterface, addTaskInterface, findProject, findTask } from "./ui";
 
 Listeners();
 

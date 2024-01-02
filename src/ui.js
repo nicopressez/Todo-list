@@ -1,6 +1,7 @@
 import {editTask, Projects, Tasks, addTask, projectList, createProject, removeTask, removeProject, editProject } from ".";
 
 const projectsSection = document.getElementById("projects");
+const body = projectsSection.parentNode
 const projectsList = document.getElementById("projectList");
 
 export function Listeners(){
@@ -10,6 +11,35 @@ document.querySelector('.newProject').addEventListener('submit', function(event)
     resetInputs(this);
 })
 }
+
+const projectTab = document.getElementById("projects");
+
+const projectNav = document.getElementById("projectNav");
+projectNav.addEventListener('click', () => {
+    if (projectTab.classList.contains("active")){projectTab.classList.remove("active")}
+    else {projectTab.classList.add("active")
+        if (todayTab.classList.contains("active")){todayTab.classList.remove("active")}
+        if (thisWeekTab.classList.contains("active")){thisWeekTab.classList.remove("active")}}
+} );
+
+const todayNav = document.getElementById("todayNav");
+const todayTab = document.getElementById("today");
+todayNav.addEventListener('click', () => {
+    if (todayTab.classList.contains("active")){todayTab.classList.remove("active")}
+    else {todayTab.classList.add("active")
+      if (projectTab.classList.contains("active")){projectTab.classList.remove("active")}
+      if (thisWeekTab.classList.contains("active")){thisWeekTab.classList.remove("active")}
+}})
+
+const thisWeekNav = document.getElementById("thisWeekNav");
+const thisWeekTab = document.getElementById("thisWeek");
+thisWeekNav.addEventListener('click', () => {
+    if (thisWeekTab.classList.contains("active")){thisWeekTab.classList.remove("active")}
+    else {thisWeekTab.classList.add("active")
+      if (projectTab.classList.contains("active")){projectTab.classList.remove("active")}
+      if (todayTab.classList.contains("active")){todayTab.classList.remove("active");
+}}})
+
 
 
 export function addProjectInterface(projectName){
