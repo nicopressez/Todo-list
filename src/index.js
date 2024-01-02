@@ -24,7 +24,6 @@ export function editTask(project, editButton, newTitle,newDesc,newDueDate){
     currentTask.title = newTitle;
     currentTask.description = newDesc;
     currentTask.dueDate = newDueDate;
-    console.log(currentTask);
 }
 
 export function removeTask(project,event)
@@ -57,5 +56,5 @@ export function editProject(editButton, newName)
 export function removeProject(event){
     const currentProject = findProject(event.target);
     const currentIndex = projectList.findIndex(project => project == currentProject);
-    projectList.splice(currentIndex);
+    projectList.splice(currentIndex, 1);
 }
