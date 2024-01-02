@@ -21,6 +21,7 @@
     text-align: center;
     width: 100%;
     border-bottom: 4px solid var(--main-color-2);
+    padding-left: 270px;
 }
 
 .head h1
@@ -47,7 +48,7 @@ body
 
 .navbar{
     padding-top: 50px;
-    padding-left: 20px;
+    padding-left: 0px;
     background-color: #0f1b1b;
     color: var(--main-color-2);
     width: 15%;
@@ -169,4 +170,24 @@ section.projects
 
 .projects.active, .today.active, .thisWeek.active{
     display: block;
+}
+
+.nav:hover{
+    cursor: pointer;
+    animation: navAnimation 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes navAnimation {
+    100%
+    {
+        background-color: #e4e7f8;
+        color: black;
+        padding-left: 20px;
+    }
+}
+
+.nav{
+    padding-left: 10px;
 }
