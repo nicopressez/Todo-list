@@ -1,193 +1,182 @@
-:root
-{
-    --main-color-1: #152f3b;
-    --main-color-2: #fdfdfd;
-    --main-color-3: #df1b28;
+:root {
+  --main-color-1: #152f3b;
+  --main-color-2: #fdfdfd;
+  --main-color-3: #df1b28;
 }
 
-*
-{
-    box-sizing: border-box;
-    font-family: Oswald, sans-serif;
-    margin: 0;
-    padding: 0;
+* {
+  box-sizing: border-box;
+  font-family: Oswald, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.head
-{
-    background-color: #0f1b1b;
-    color: var(--main-color-2);
-    height: 100px;
-    text-align: center;
-    width: 100%;
-    border-bottom: 4px solid var(--main-color-2);
-    padding-left: 270px;
+.head {
+  background-color: #0f1b1b;
+  color: var(--main-color-2);
+  height: 100px;
+  text-align: center;
+  width: 100%;
+  border-bottom: 4px solid var(--main-color-2);
+  padding-left: 270px;
 }
 
-.head h1
-{
-    font-size: 5rem;
-    margin-left: 80px;
-    margin-right: 80px;
-    display: inline-block;
+.head h1 {
+  font-size: 5rem;
+  margin-left: 80px;
+  margin-right: 80px;
+  display: inline-block;
 }
 
-.shia-doit
-{
-    height: 90px;
-    margin-top: 20px;
-    margin-bottom: 0px;
+.shia-doit {
+  height: 90px;
+  margin-top: 20px;
+  margin-bottom: 0px;
 }
 
-body
-{
-    background-color: #e4e7f8;
-    display: flex;
-    flex-wrap: wrap;
+body {
+  background-color: #e4e7f8;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.navbar{
-    padding-top: 50px;
-    padding-left: 0px;
-    background-color: #0f1b1b;
-    color: var(--main-color-2);
-    width: 15%;
-    height: 90vh;
-    border-right: 4px solid var(--main-color-2);
+.navbar {
+  padding-top: 50px;
+  padding-left: 0px;
+  background-color: #0f1b1b;
+  color: var(--main-color-2);
+  width: 15%;
+  height: 90vh;
+  border-right: 4px solid var(--main-color-2);
 }
 
-.navbar h2
-{
-    margin-bottom: 20px;
+.navbar h2 {
+  margin-bottom: 20px;
 }
 
-section.projects
-{
-    padding-top: 50px;
-    width:85%;
-    font-size: 2rem;
-    text-align: center;
+section.projects {
+  padding-top: 50px;
+  width: 85%;
+  font-size: 2rem;
+  text-align: center;
 }
 
-#projectName
-{
-    font-size: 2rem;
-    text-align: center;
-    padding-bottom: 10px;
-    width: 250px;
-    display: block;
-    margin: 0 auto 10px;
-    border: 0px;
-    border-radius: 3%;
+#projectName {
+  font-size: 2rem;
+  text-align: center;
+  padding-bottom: 10px;
+  width: 250px;
+  display: block;
+  margin: 0 auto 10px;
+  border: 0px;
+  border-radius: 3%;
 }
 
-#newprojectsubmit
-{   
-    height: 40px;
-    font-size: 1.5rem;
-    display: block;
-    width: 110px;
-    margin: 0 auto 10px;
-    background-color: #e4e7f8;
-    border: 2px solid lightgray;
-    border-radius: 3%;
+#newprojectsubmit {
+  height: 40px;
+  font-size: 1.5rem;
+  display: block;
+  width: 110px;
+  margin: 0 auto 10px;
+  background-color: #e4e7f8;
+  border: 2px solid lightgray;
+  border-radius: 3%;
 }
 
-#newprojectsubmit:hover
-{
-    filter: brightness(98%);
+#newprojectsubmit:hover {
+  filter: brightness(98%);
 }
 
-#newprojectsubmit:active
-{
-    filter: brightness(95%);
+#newprojectsubmit:active {
+  filter: brightness(95%);
 }
 
-.projectList{
-    background-color: white;
-    margin-left: 300px;
-    margin-right: 300px;
-    border: 4px solid lightgray;
-    border-radius: 2%;
+.projectList {
+  background-color: white;
+  margin-left: 300px;
+  margin-right: 300px;
+  border: 4px solid lightgray;
+  border-radius: 2%;
 }
 
-.singleProject
-{   
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid lightgray;
+.singleProject {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
 }
 
-.btnContainer
-{
-    display: flex;
-    flex-direction: row;
-    margin-top: 8px;
-    margin-right: 10px;
-    gap: 5px;
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+  margin-right: 10px;
+  gap: 5px;
 }
 
-.singleProject button{
-    height: 30px;
-    width: 100px;
+.singleProject button {
+  height: 30px;
+  width: 100px;
 }
 
-.singleProject h3{
-    margin-left: 20px;
-    font-size: 2rem;
-    font-weight: lighter;
+.singleProject h3 {
+  margin-left: 20px;
+  font-size: 2rem;
+  font-weight: lighter;
 }
 
-.editForm
-{
-    display: flex;
-    flex-direction: column;
+.editForm {
+  display: flex;
+  flex-direction: column;
 }
 
-.singleProject:hover
-{
-    background-color: lightgrey;
+.singleProject:hover {
+  background-color: lightgrey;
 }
 
-.singleTask
-{
-    display: flex;
-    flex-direction: column;
-    font-size: 1rem;
-    border-bottom: 3px solid black;
+.singleTask {
+  display: block;
+  flex-direction: column;
+  font-size: 1rem;
+  border-bottom: 3px solid black;
 }
 
-.singleTask button
-{
-    width: 30%;
-    margin: 0 auto 10px;
+.singleTask.active {
+  display: none;
 }
 
-.projects, .today, .thisWeek{
-    display: none;
+.singleTask button {
+  width: 30%;
+  margin: 0 auto 10px;
 }
 
-.projects.active, .today.active, .thisWeek.active{
-    display: block;
+.projects,
+.today,
+.thisWeek {
+  display: none;
 }
 
-.nav:hover{
-    cursor: pointer;
-    animation: navAnimation 1s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+.projects.active,
+.today.active,
+.thisWeek.active {
+  display: block;
+}
+
+.nav:hover {
+  cursor: pointer;
+  animation: navAnimation 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 @keyframes navAnimation {
-    100%
-    {
-        background-color: #e4e7f8;
-        color: black;
-        padding-left: 20px;
-    }
+  100% {
+    background-color: #e4e7f8;
+    color: black;
+    padding-left: 20px;
+  }
 }
 
-.nav{
-    padding-left: 10px;
+.nav {
+  padding-left: 10px;
 }
