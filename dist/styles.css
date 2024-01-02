@@ -7,6 +7,7 @@
 
 *
 {
+    box-sizing: border-box;
     font-family: Oswald, sans-serif;
     margin: 0;
     padding: 0;
@@ -61,5 +62,81 @@ body
 
 section.projects
 {
-    
+    padding-top: 50px;
+    width:85%;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#projectName
+{
+    font-size: 2rem;
+    text-align: center;
+    padding-bottom: 10px;
+    width: 250px;
+    display: block;
+    margin: 0 auto 10px;
+    border: 0px;
+    border-radius: 3%;
+}
+
+#newprojectsubmit
+{   
+    height: 40px;
+    font-size: 1.5rem;
+    display: block;
+    width: 110px;
+    margin: 0 auto 10px;
+    background-color: #e4e7f8;
+    border: 2px solid lightgray;
+    border-radius: 3%;
+}
+
+#newprojectsubmit:hover
+{
+    filter: brightness(98%);
+}
+
+#newprojectsubmit:active
+{
+    filter: brightness(95%);
+}
+
+.projectList{
+    background-color: white;
+    margin-left: 300px;
+    margin-right: 300px;
+    border: 4px solid lightgray;
+    border-radius: 2%;
+}
+
+.singleProject
+{   
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnContainer
+{
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+    margin-right: 10px;
+    gap: 5px;
+}
+
+.singleProject button{
+    height: 30px;
+    width: 100px;
+}
+
+.singleProject h3{
+    margin-left: 20px;
+    font-size: 2rem;
+    font-weight: lighter;
+}
+
+.editForm
+{
 }

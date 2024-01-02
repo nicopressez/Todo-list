@@ -1,5 +1,8 @@
 import {editTask, Projects, Tasks, addTask, projectList, createProject, removeTask, removeProject, editProject } from ".";
 
+const projectsSection = document.getElementById("projects");
+const projectsList = document.getElementById("projectList");
+
 export function Listeners(){
 document.querySelector('.newProject').addEventListener('submit', function(event){
     event.preventDefault();
@@ -10,24 +13,26 @@ document.querySelector('.newProject').addEventListener('submit', function(event)
 
 
 export function addProjectInterface(projectName){
-    const body = document.querySelector("body");
     const project = document.createElement("div");
     const projectTitle = document.createElement("h3");
+    const projectBtnContainer = document.createElement("div");
     const projectRemoveBtn = document.createElement("button");
     const addTaskBtn = document.createElement("button");
     const editProjectBtn = document.createElement("button");
 
-    addTaskBtn.classList.add('addTaskBtn')
+    project.classList.add("singleProject");
+    addTaskBtn.classList.add('addTaskBtn');
+    projectBtnContainer.classList.add("btnContainer");
 
     addTaskBtn.textContent = "Add task";
-    projectRemoveBtn.textContent = "Remove Project";
+    projectRemoveBtn.textContent = "Remove";
     projectTitle.textContent = projectName;
     editProjectBtn.textContent = "Edit";
 
     addTaskBtn.addEventListener('click', (event) => showTaskForm(event));
 
     projectRemoveBtn.addEventListener('click', (event) => {
-        body.removeChild(project);
+        projectsList.removeChild(project);
         removeProject(event);
     });
 
@@ -35,6 +40,8 @@ export function addProjectInterface(projectName){
         const editForm = document.createElement("form");
         const editInput = document.createElement("input");
         const editConfirmBtn = document.createElement("input");
+
+        editForm.classList.add("editForm");
 
         editInput.value = projectTitle.textContent;
         editInput.type = "text";
@@ -47,23 +54,24 @@ export function addProjectInterface(projectName){
             editProject(editProjectBtn, newName);
             projectTitle.textContent = newName;
 
-            editProjectBtn.parentNode.removeChild(editForm);
+            project.removeChild(editForm);
         })
 
-        editButton.target.parentNode.appendChild(editForm);
+        project.appendChild(editForm);
         editForm.appendChild(editInput);
         editForm.appendChild(editConfirmBtn);
     })
 
-    body.appendChild(project);
+    projectsList.appendChild(project);
     project.appendChild(projectTitle);
-    project.appendChild(addTaskBtn);
-    project.appendChild(editProjectBtn);
-    project.appendChild(projectRemoveBtn);
+    project.appendChild(projectBtnContainer)
+    projectBtnContainer.appendChild(addTaskBtn);
+    projectBtnContainer.appendChild(editProjectBtn);
+    projectBtnContainer.appendChild(projectRemoveBtn);
 }
 
 export function findProject(form){
-    const projectDiv = form.parentNode;
+    const projectDiv = form.parentNode.parentNode;
     const projectTitle = projectDiv.querySelector("h3");
     const projectName = projectTitle.textContent;
     const thisProject = projectList.find ((project) => project.name == projectName);
@@ -111,6 +119,7 @@ export function addTaskInterface(project,form)
         const removeTaskBtn = document.createElement("button");
         const editTaskBtn = document.createElement("button");
 
+        taskDiv.classList.add("singleTask");
         taskTitle.textContent = taskInfo.title;
         taskDesc.textContent = taskInfo.description;
         taskDueDate.textContent = taskInfo.dueDate;
