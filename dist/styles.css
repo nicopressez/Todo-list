@@ -115,6 +115,7 @@ section.projects
     margin: 0;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid lightgray;
 }
 
 .btnContainer
@@ -139,4 +140,25 @@ section.projects
 
 .editForm
 {
+    display: flex;
+    flex-direction: column;
+}
+
+.singleProject:hover
+{
+    background-color: lightgrey;
+}
+
+.singleTask
+{
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    border-bottom: 3px solid black;
+}
+
+.singleTask button
+{
+    width: 30%;
+    margin: 0 auto 10px;
 }

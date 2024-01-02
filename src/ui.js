@@ -13,6 +13,7 @@ document.querySelector('.newProject').addEventListener('submit', function(event)
 
 
 export function addProjectInterface(projectName){
+    const projectWhole = document.createElement("div");
     const project = document.createElement("div");
     const projectTitle = document.createElement("h3");
     const projectBtnContainer = document.createElement("div");
@@ -20,6 +21,7 @@ export function addProjectInterface(projectName){
     const addTaskBtn = document.createElement("button");
     const editProjectBtn = document.createElement("button");
 
+    projectWhole.classList.add("entireProject");
     project.classList.add("singleProject");
     addTaskBtn.classList.add('addTaskBtn');
     projectBtnContainer.classList.add("btnContainer");
@@ -29,14 +31,17 @@ export function addProjectInterface(projectName){
     projectTitle.textContent = projectName;
     editProjectBtn.textContent = "Edit";
 
-    addTaskBtn.addEventListener('click', (event) => showTaskForm(event));
+    addTaskBtn.addEventListener('click', (event)  =>
+        {if (!project.querySelector("form")){showTaskForm(event)}
+});
 
     projectRemoveBtn.addEventListener('click', (event) => {
-        projectsList.removeChild(project);
+        projectsList.removeChild(projectWhole);
         removeProject(event);
     });
 
     editProjectBtn.addEventListener('click', (editButton) => {
+        if (!project.querySelector("form")){
         const editForm = document.createElement("form");
         const editInput = document.createElement("input");
         const editConfirmBtn = document.createElement("input");
@@ -60,9 +65,10 @@ export function addProjectInterface(projectName){
         project.appendChild(editForm);
         editForm.appendChild(editInput);
         editForm.appendChild(editConfirmBtn);
-    })
+}})
 
-    projectsList.appendChild(project);
+    projectsList.appendChild(projectWhole);
+    projectWhole.appendChild(project);
     project.appendChild(projectTitle);
     project.appendChild(projectBtnContainer)
     projectBtnContainer.appendChild(addTaskBtn);
@@ -99,7 +105,7 @@ function showTaskForm(event){
     })
 
     const clickedButton = event.target;
-    const upperDiv = clickedButton.parentNode;
+    const upperDiv = clickedButton.parentNode.parentNode;
     upperDiv.appendChild(addTaskForm);
 
     addTaskForm.appendChild(addTaskTitle);
@@ -132,6 +138,7 @@ export function addTaskInterface(project,form)
         });
 
         editTaskBtn.addEventListener('click', (editButton) => {
+            if (!editTaskBtn.parentNode.querySelector("form")){
             const editTaskForm = document.createElement("form");
             const editTaskTitle = document.createElement("input");
             const editTaskDescription = document.createElement("input");
@@ -168,9 +175,9 @@ export function addTaskInterface(project,form)
             editTaskForm.appendChild(editTaskDescription);
             editTaskForm.appendChild(editTaskDueDate);
             editTaskForm.appendChild(editTaskConfirm);
-        })
+        }})
 
-        const upperDiv = form.parentNode;
+        const upperDiv = form.parentNode.parentNode;
         upperDiv.appendChild(taskDiv);
         taskDiv.appendChild(taskTitle);
         taskDiv.appendChild(taskDesc);
