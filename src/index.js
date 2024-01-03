@@ -6,9 +6,18 @@ import {
   findTask,
 } from "./ui";
 
+import {
+  loadDataFromLocalStorage,
+  loadProjectsFromStorage,
+  saveDataToLocalStorage,
+} from "./storagehandler";
+
 Listeners();
 
 export const projectList = [];
+
+loadDataFromLocalStorage();
+loadProjectsFromStorage();
 
 export class Tasks {
   constructor(project, title, description, dueDate) {
@@ -28,6 +37,7 @@ export function addTask(form) {
     form.newTaskDate.value,
   );
   addTaskInterface(currentProject, form);
+  saveDataToLocalStorage();
 }
 
 export function editTask(project, editButton, newTitle, newDesc, newDueDate) {
@@ -35,6 +45,7 @@ export function editTask(project, editButton, newTitle, newDesc, newDueDate) {
   currentTask.title = newTitle;
   currentTask.description = newDesc;
   currentTask.dueDate = newDueDate;
+  saveDataToLocalStorage();
 }
 
 export function removeTask(project, event) {
@@ -43,6 +54,7 @@ export function removeTask(project, event) {
     (element) => element == currentTask,
   );
   project.tasks.splice(taskIndex, 1);
+  saveDataToLocalStorage();
 }
 
 export class Projects {
@@ -56,11 +68,13 @@ export class Projects {
 
 export function createProject(form) {
   new Projects(form.projectName.value);
+  saveDataToLocalStorage();
 }
 
 export function editProject(editButton, newName) {
   const currentProject = findProject(editButton);
   currentProject.name = newName;
+  saveDataToLocalStorage();
 }
 
 export function removeProject(event) {
@@ -69,4 +83,5 @@ export function removeProject(event) {
     (project) => project == currentProject,
   );
   projectList.splice(currentIndex, 1);
+  saveDataToLocalStorage();
 }

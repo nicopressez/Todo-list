@@ -1,75 +1,29 @@
+import { findProject, showTaskForm, projectsList } from "./ui";
 import {
-  editTask,
-  addTask,
   projectList,
-  createProject,
-  removeTask,
   removeProject,
   editProject,
-} from ".";
+  removeTask,
+  editTask,
+} from "./index";
 
-export const projectsList = document.getElementById("projectList");
-
-export function Listeners() {
-  document
-    .querySelector(".newProject")
-    .addEventListener("submit", function (event) {
-      event.preventDefault();
-      createProject(this);
-      resetInputs(this);
-    });
+export function saveDataToLocalStorage() {
+  localStorage.setItem("projectlist", JSON.stringify(projectList));
+  console.log(localStorage.getItem("projectlist"));
 }
 
-const projectTab = document.getElementById("projects");
-
-const projectNav = document.getElementById("projectNav");
-projectNav.addEventListener("click", () => {
-  if (projectTab.classList.contains("active")) {
-    projectTab.classList.remove("active");
-  } else {
-    projectTab.classList.add("active");
-    if (todayTab.classList.contains("active")) {
-      todayTab.classList.remove("active");
-    }
-    if (thisWeekTab.classList.contains("active")) {
-      thisWeekTab.classList.remove("active");
-    }
+export function loadDataFromLocalStorage() {
+  const storedProjectList = localStorage.getItem("projectlist");
+  if (storedProjectList) {
+    projectList.splice(0, projectList.length, ...JSON.parse(storedProjectList));
   }
-});
+}
 
-const todayNav = document.getElementById("todayNav");
-const todayTab = document.getElementById("today");
-todayNav.addEventListener("click", () => {
-  if (todayTab.classList.contains("active")) {
-    todayTab.classList.remove("active");
-  } else {
-    todayTab.classList.add("active");
-    if (projectTab.classList.contains("active")) {
-      projectTab.classList.remove("active");
-    }
-    if (thisWeekTab.classList.contains("active")) {
-      thisWeekTab.classList.remove("active");
-    }
-  }
-});
+export function loadProjectsFromStorage() {
+  projectList.forEach((project) => loadProjectsInterface(project.name));
+}
 
-const thisWeekNav = document.getElementById("thisWeekNav");
-const thisWeekTab = document.getElementById("thisWeek");
-thisWeekNav.addEventListener("click", () => {
-  if (thisWeekTab.classList.contains("active")) {
-    thisWeekTab.classList.remove("active");
-  } else {
-    thisWeekTab.classList.add("active");
-    if (projectTab.classList.contains("active")) {
-      projectTab.classList.remove("active");
-    }
-    if (todayTab.classList.contains("active")) {
-      todayTab.classList.remove("active");
-    }
-  }
-});
-
-export function addProjectInterface(projectName) {
+export function loadProjectsInterface(projectName) {
   const projectWhole = document.createElement("div");
   const project = document.createElement("div");
   const projectTitle = document.createElement("h3");
@@ -134,55 +88,14 @@ export function addProjectInterface(projectName) {
   projectBtnContainer.appendChild(addTaskBtn);
   projectBtnContainer.appendChild(editProjectBtn);
   projectBtnContainer.appendChild(projectRemoveBtn);
-}
 
-export function findProject(form) {
-  const projectDiv = form.parentNode.parentNode;
-  const projectTitle = projectDiv.querySelector("h3");
-  const projectName = projectTitle.textContent;
-  const thisProject = projectList.find(
-    (project) => project.name == projectName,
-  );
-  return thisProject;
-}
-
-export function showTaskForm(event) {
-  const addTaskForm = document.createElement("form");
-  const addTaskTitle = document.createElement("input");
-  const addTaskDesc = document.createElement("input");
-  const addTaskDate = document.createElement("input");
-  const addTaskConfirm = document.createElement("input");
-
-  addTaskTitle.type = "text";
-  addTaskTitle.name = "newTaskTitle";
-  addTaskDesc.type = "text";
-  addTaskDesc.name = "newTaskDesc";
-  addTaskDate.type = "date";
-  addTaskDate.name = "newTaskDate";
-  addTaskConfirm.type = "submit";
-  addTaskConfirm.name = "confirmNewTask";
-
-  addTaskConfirm.classList.add("confirmNewTask");
-  addTaskForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    addTask(this);
-    resetInputs(this);
-    upperDiv.removeChild(addTaskForm);
+  const currentProject = findProject(editProjectBtn);
+  currentProject.tasks.forEach((task) => {
+    loadTaskInterface(currentProject, task, projectBtnContainer);
   });
-
-  const clickedButton = event.target;
-  const upperDiv = clickedButton.parentNode.parentNode;
-  upperDiv.appendChild(addTaskForm);
-
-  addTaskForm.appendChild(addTaskTitle);
-  addTaskForm.appendChild(addTaskDesc);
-  addTaskForm.appendChild(addTaskDate);
-  addTaskForm.appendChild(addTaskConfirm);
 }
 
-export function addTaskInterface(project, form) {
-  const taskInfo = project.tasks[project.tasks.length - 1];
-
+export function loadTaskInterface(project, taskInfo, form) {
   const taskDiv = document.createElement("div");
   const taskTitle = document.createElement("h3");
   const taskDesc = document.createElement("p");
@@ -250,23 +163,4 @@ export function addTaskInterface(project, form) {
   taskDiv.appendChild(taskDueDate);
   taskDiv.appendChild(editTaskBtn);
   taskDiv.appendChild(removeTaskBtn);
-}
-
-export function findTask(project, event) {
-  const removeButton = event.target;
-  const taskDiv = removeButton.parentNode;
-  const taskTitle = taskDiv.querySelector("h3");
-  const taskName = taskTitle.textContent;
-  const currentTask = project.tasks.find((task) => task.title === taskName);
-  return currentTask;
-}
-
-function resetInputs(form) {
-  const inputs = form.querySelectorAll("input");
-
-  inputs.forEach((input) => {
-    if (input.type !== "submit") {
-      input.value = "";
-    }
-  });
 }
